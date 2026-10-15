@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linear</title>
+  <style>
+    body {
+      background-color: #000000;
+      color: #ffffff;
+      font-family: "Arial Narrow", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100vh;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    .hero-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .logo-img {
+      max-width: 180px;
+      height: auto;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .brand-title {
+      font-size: 28px;
+      letter-spacing: 6px;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin: 0 0 40px 0;
+    }
+    .action-link {
+      color: #ffffff;
+      text-decoration: underline;
+      font-size: 14px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: inherit;
+      padding: 10px;
+      transition: opacity 0.2s ease;
+    }
+    .action-link:hover {
+      opacity: 0.7;
+    }
+    #status-message {
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+      margin-top: 10px;
+    }
+    footer {
+      padding: 40px 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero-container">
+    <img src="logo.png" alt="Linear Logo" class="logo-img">
+    <div class="brand-title">LINEAR</div>
+    
+    <button id="unsub-btn" class="action-link" onclick="handleUnsubscribe()">Unsubscribe from text updates</button>
+    <div id="status-message"></div>
+  </div>
+
+  <footer>
+    <button class="action-link" onclick="triggerDownload()">[ Current Newsletter ]</button>
+  </footer>
+
+  <script>
+    const CONFIG = {
+      webAppUrl: "PASTE_YOUR_WEB_APP_URL_HERE",
+      // Constructed with safe format
+      downloadUrl: "https://google.com"
+    };
+
+    // Subfolder-safe parameters engine
+    function getClientId() {
+      // window.location.search extracts the parameter correctly anywhere on the web
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('id') || "Unknown";
+    }
+
+    function handleUnsubscribe() {
+      const clientId = getClientId();
+      const unsubBtn = document.getElementById('unsub-btn');
+      const statusMsg = document.getElementById('status-message');
+
+      unsubBtn.style.display = 'none';
+      statusMsg.innerText = "Processing request...";
+
+      const targetUrl = CONFIG.webAppUrl + "?id=" + encodeURIComponent(clientId);
+
+      fetch(targetUrl, { mode: 'no-cors' })
+        .then(() => {
+          statusMsg.innerText = "Request received.";
+        })
+        .catch(() => {
+          statusMsg.innerText = "Please try again later.";
+          unsubBtn.style.display = 'inline';
+        });
+    }
+
+    function triggerDownload() {
+      window.location.href = CONFIG.downloadUrl;
+    }
+  </script>
+
+</body>
+</html>
