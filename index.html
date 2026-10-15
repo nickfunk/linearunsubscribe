@@ -67,17 +67,20 @@
 </head>
 <body>
 
+  <!-- All content is now unified in the centered stack -->
   <div class="hero-container">
-    <img src="logo.png" alt="Linear Logo" class="logo-img">
-    <div class="brand-title">LINEAR</div>
     
+    <!-- 1. Your Custom Logo Graphic -->
+    <img src="logo.png" alt="Linear Logo" class="logo-img">
+    
+    <!-- 2. Newsletter Link (Moved here, styled with a small margin below it) -->
+    <button class="action-link" onclick="triggerDownload()" style="margin-bottom: 20px;">[ Current Newsletter ]</button>
+    
+    <!-- 3. Unsubscribe Interface Context -->
     <button id="unsub-btn" class="action-link" onclick="handleUnsubscribe()">Unsubscribe from text updates</button>
     <div id="status-message"></div>
-  </div>
 
-  <footer>
-    <button class="action-link" onclick="triggerDownload()">[ Current Newsletter ]</button>
-  </footer>
+  </div>
 
   <script>
     const CONFIG = {
