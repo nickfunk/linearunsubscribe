@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
   <title>Linear</title>
   <style>
     body {
@@ -25,11 +26,12 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
+      gap: 8px;
     }
     .logo-img {
       max-width: 180px;
       height: auto;
-      margin-bottom: 20px;
+      margin-bottom: 0px;
       display: block;
     }
     .brand-title {
@@ -37,7 +39,7 @@
       letter-spacing: 6px;
       font-weight: bold;
       text-transform: uppercase;
-      margin: 0 0 40px 0;
+      margin: 0 0 0px 0;
     }
     .action-link {
       color: #ffffff;
@@ -63,6 +65,40 @@
     footer {
       padding: 40px 20px;
     }
+    .custom-substack-container {
+      width: 100%;
+      max-width: 300px;
+      margin: 12px auto;
+      font-family: "Arial Narrow", Arial, sans-serif;
+      text-align: center;
+    }
+    .subscribe-label {
+      margin: 0 0 4px 0;
+      font-size: 14px;
+      letter-spacing: 1px;
+      color: #ffffff;
+    }
+    .subscribe-btn {
+      display: inline-block;
+      width: 160px;
+      box-sizing: border-box;
+      padding: 12px 20px;
+      background-color: #ffffff;
+      color: #000000;
+      border: 1px solid #ffffff;
+      border-radius: 0px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+    .subscribe-btn:hover {
+      opacity: 0.7;
+    }
   </style>
 </head>
 <body>
@@ -74,19 +110,26 @@
     <img src="logo.png" alt="Linear Logo" class="logo-img">
     
     <!-- 2. Newsletter Link (Moved here, styled with a small margin below it) -->
-    <button class="action-link" onclick="triggerDownload()" style="margin-bottom: 20px;">Current Newsletter</button>
+    <button class="action-link" onclick="triggerDownload()" style="margin-bottom: 0px;">Current Newsletter</button>
     
-    <!-- 3. Unsubscribe Interface Context -->
+    <!-- 3. Custom Substack link for LINEAR -->
+    <div class="custom-substack-container">
+    <p class="subscribe-label">Prefer email updates? Get notified through Substack when a fresh newsletter drops.</p>
+    <a href="https://nickfunk.substack.com/subscribe" target="_blank" rel="noopener noreferrer" class="subscribe-btn">
+      Subscribe
+    </a>
+    </div>
+    <!-- 4. Unsubscribe Interface Context -->
     <button id="unsub-btn" class="action-link" onclick="handleUnsubscribe()">Unsubscribe from text updates</button>
     <div id="status-message"></div>
-
+    </style>
   </div>
 
   <script>
     const CONFIG = {
       webAppUrl: "https://script.google.com/macros/s/AKfycbxFVtXXxBLQD8wo4wGKe5BmqA7gIHfd6SFtAeYXUEqV4MjStGwosoPU5k-qR5QRkoXX/exec",
       // Constructed with safe format
-      downloadUrl: "https://drive.google.com/uc?export=download&id=1PTpUZbZWug1Dp_-ML5L-YtPgLZ8WiW82"
+      downloadUrl: "https://drive.google.com/file/d/1GC4X4XdO6bEHKz3rdgE377_xHC76Iwu2/view?usp=drive_link"
     };
     // Subfolder-safe parameters engine
     function getClientId() {
